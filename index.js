@@ -4,7 +4,13 @@ var _ = require("lodash"),
     moment = require("moment"),
     colorbrewer = require("colorbrewer");
 
-var calendar_heatmap = function(opts) {
+// object to attach things to
+var calendar_heatmap = {};
+
+// expose colorbrewer scales
+calendar_heatmap.brewer = colorbrewer;
+
+calendar_heatmap.create = function(opts) {
 
     //// utility methods to move DOM node to front/back
     d3.selection.prototype.moveToFront = function() {
@@ -22,9 +28,12 @@ var calendar_heatmap = function(opts) {
         });
     };
 
-    //// options to use for calendar heatmap
+    // reconciliation
+    if (opts.sunday_start && opts.weekdays_only) {
+        opts.sunday_start = false;
+    };
 
-    // load color schemes and set default here by name/number (a la summary_tiles)
+    //// options to use for calendar heatmap
 
     var options = {
         data: opts.data, // required
@@ -39,7 +48,7 @@ var calendar_heatmap = function(opts) {
         title_size: opts.title_size ? opts.title_size : 18,
         tile_width: opts.tile_width ? opts.tile_width : 15,
         tile_height: opts.tile_height ? opts.tile_height : 14,
-        color_scheme: opts.color_scheme ? opts.color_scheme : colorbrewer.YlOrBr[5],
+        color_scheme: opts.color_scheme ? opts.color_scheme : colorbrewer.YlOrBr,
         stroke_color: opts.stroke_color ? opts.stroke_color : "#fff",
         accent_color: opts.accent_color ? opts.accent_color : "#333",
         unselected_color: opts.unselected_color ? opts.unselected_color : "#999",
@@ -175,7 +184,7 @@ var calendar_heatmap = function(opts) {
     var num_weeks = d3.max(_.map(options.data, "week_number"));
 
     // color scheming
-    var palette = options.color_scheme;
+    var palette = options.color_scheme[5];
 
     var color_scale = d3.scale.linear()
         .domain(d3.range(min_val, max_val, (max_val - min_val)/5))
