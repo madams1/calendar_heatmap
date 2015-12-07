@@ -1,5 +1,5 @@
 # calendar_heatmap
-flexible D3 calendar heatmaps a la GitHub contribution graphs
+flexible D3 calendar heatmaps a la GitHub contribution calendars
 
 ![](img/calendar_heatmap_example.png)
 

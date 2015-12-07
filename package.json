@@ -1,7 +1,7 @@
 {
   "name": "calendar_heatmap",
   "version": "1.0.0",
-  "description": "flexible D3 calendar heatmaps a la GitHub contribution graphs",
+  "description": "flexible D3 calendar heatmaps a la GitHub contribution calendars",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
