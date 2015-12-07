@@ -5,7 +5,7 @@ flexible D3 calendar heatmaps a la GitHub contribution graphs
 
 ## including in your project
 Using node:
-1. `npm install madams1/calendar_heatmap`
+1. `npm install calendar_heatmap`
 2. `var calendar_heatmap = require(calendar_heatmap);`
 
 Otherwise you can just put the bundled JS in your HTML. `<script src="calendar_heatmap.min.js"></script>` and carry on.
