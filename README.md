@@ -1,16 +1,18 @@
 # calendar_heatmap
 flexible D3 calendar heatmaps a la GitHub contribution graphs
 
-(include an image)
+![](img/calendar_heatmap_example.png)
 
 ## including in your project
-If you're using node, you can `npm install madams1/calendar_heatmap` and then `var calendar_heatmap = require(calendar_heatmap);` to use it however you'd like.
+Using node:
+1. `npm install madams1/calendar_heatmap`
+2. `var calendar_heatmap = require(calendar_heatmap);`
 
 Otherwise you can just put the bundled JS in your HTML. `<script src="calendar_heatmap.min.js"></script>` and carry on.
 
 ## usage
 
-To create the default, barebones calendar_heatmap from your data, you might do something like:
+To create the default, barebones calendar heatmap from your data, you might do something like:
 
 ```javascript
 calendar_heatmap.create({
@@ -19,8 +21,6 @@ calendar_heatmap.create({
     fill_var: "count"
 });
 ```
-
-calendar_heatmap exposes a `create` method that's used to make the actual chart, as well as a `brewer` object that includes <a href="http://colorbrewer2.org" target="_blank">ColorBrewer</a> color palettes.
 
 Your data is expected to be an array of objects representing days and corresponding measurements. It should probably look something like this:
 
@@ -32,7 +32,9 @@ Your data is expected to be an array of objects representing days and correspond
 ]
 ```
 
-_Note_: You probably want at least a few months of data to make this type of visualization...
+_Note_: You probably want the timeframe of your data to span somewhere between a couple months and a couple years to make this type of visualization. A year's worth of data might make the most sense...
+
+For convenience, **calendar_heatmap** exposes a `brewer` object that includes <a href="http://colorbrewer2.org" target="_blank">ColorBrewer</a> color palettes.
 
 Another example:
 ```javascript
@@ -50,7 +52,7 @@ d3.json("my_data.json", function(err, dat) {
     });
 });
 ```
-Take a look at the <a href="https://github.com/madams1/calendar_heatmap/wiki" target="_blank">wiki</a> for the full breakdown of available options.
+Take a look at the <a href="https://github.com/madams1/calendar_heatmap/wiki/Options" target="_blank">wiki</a> for the full breakdown of available options.
 
 ## features
 - handles data with missing and unordered dates gracefully
@@ -61,6 +63,8 @@ Take a look at the <a href="https://github.com/madams1/calendar_heatmap/wiki" ta
 - continuous legend included
 - smart tooltips
 - layout toggle to dynamically adjust layout
+- sensible defaults
+- self-contained (no need to manually include dependencies)
 
 ## dependencies
 - D3.js

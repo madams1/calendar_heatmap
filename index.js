@@ -48,7 +48,7 @@ calendar_heatmap.create = function(opts) {
         title_size: opts.title_size ? opts.title_size : 18,
         tile_width: opts.tile_width ? opts.tile_width : 15,
         tile_height: opts.tile_height ? opts.tile_height : 14,
-        color_scheme: opts.color_scheme ? opts.color_scheme : colorbrewer.YlOrBr,
+        color_scheme: opts.color_scheme ? opts.color_scheme : calendar_heatmap.brewer.YlOrBr,
         stroke_color: opts.stroke_color ? opts.stroke_color : "#fff",
         accent_color: opts.accent_color ? opts.accent_color : "#333",
         unselected_color: opts.unselected_color ? opts.unselected_color : "#999",
