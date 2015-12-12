@@ -5,6 +5,7 @@ flexible D3 calendar heatmaps a la GitHub contribution calendars
 
 ## including in your project
 Using node:
+
 1. `npm install calendar_heatmap`
 2. `var calendar_heatmap = require(calendar_heatmap);`
 
