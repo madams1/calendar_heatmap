@@ -184,12 +184,13 @@ calendar_heatmap.create = function(opts) {
     var num_weeks = d3.max(_.map(options.data, "week_number"));
 
     // color scheming
-    var palette = options.color_scheme[5];
+    var palette = options.color_scheme[5],
+        color_domain = d3.range(min_val, max_val + (max_val - min_val)/4, (max_val - min_val)/4);
 
     var color_scale = d3.scale.linear()
-        .domain(d3.range(min_val, max_val, (max_val - min_val)/5))
+        .domain(color_domain)
         .range(palette);
-
+        
     // margins and sizes
     var margin = {top: 50, bottom: 10, left: 80, right: 10};
 
@@ -332,7 +333,7 @@ calendar_heatmap.create = function(opts) {
         _.forEach(palette, function(c, i) {
             legend.append("stop")
                 .attr("offset", i*25 + "%")
-                .attr("stop-color", c)
+                .attr("stop-color", c);
         });
 
         legend_group.append("rect")

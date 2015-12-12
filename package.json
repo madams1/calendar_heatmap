@@ -1,6 +1,6 @@
 {
   "name": "calendar_heatmap",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "flexible D3 calendar heatmaps a la GitHub contribution calendars",
   "main": "index.js",
   "scripts": {
