@@ -67,7 +67,7 @@ calendar_heatmap.create = function(opts) {
     _.map(options.data, function(x) {
         var date_string = options.date_format ?
             d3.time.format(options.date_format).parse(x[options.date_var]) :
-            Date.parse(x[options.date_var]);
+            d3.time.format("%Y-%m-%d").parse(x[options.date_var]);
 
         x[options.date_var] = moment(date_string);
         x[options.fill_var] = +x[options.fill_var];
@@ -190,7 +190,7 @@ calendar_heatmap.create = function(opts) {
     var color_scale = d3.scale.linear()
         .domain(color_domain)
         .range(palette);
-        
+
     // margins and sizes
     var margin = {top: 50, bottom: 10, left: 80, right: 10};
 
@@ -532,7 +532,9 @@ calendar_heatmap.create = function(opts) {
                 .style("fill", "#333");
 
             this_tile.tt_group.append("text")
-                        .text((options.legend_title ? options.legend_title : options.fill_var) + ": " + d3.format(options.numeric_format)(d3.round(d[options.fill_var], options.round)))
+                        .text((options.legend_title ? options.legend_title : options.fill_var) + ": " +
+                            (_.isUndefined(d[options.fill_var]) ? "N/A" :
+                            d3.format(options.numeric_format)(d3.round(d[options.fill_var], options.round))))
                         .style("font-size", 14)
                         .style("font-weight", 700)
                         .attr("text-anchor", "middle")
