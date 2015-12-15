@@ -9,7 +9,8 @@ Using node:
 1. `npm install calendar_heatmap`
 2. `var calendar_heatmap = require(calendar_heatmap);`
 
-Otherwise you can just put the bundled JS in your HTML. `<script src="calendar_heatmap.min.js"></script>` and carry on.
+
+Otherwise you can just download the pre-bundled JS and include it in your HTML. `<script src="calendar_heatmap.min.js"></script>` and carry on.
 
 ## usage
 
@@ -55,6 +56,10 @@ d3.json("my_data.json", function(err, dat) {
 ```
 Take a look at the <a href="https://github.com/madams1/calendar_heatmap/wiki/Options" target="_blank">wiki</a> for the full breakdown of available options.
 
+## examples
+
+- <a href="http://bl.ocks.org/madams1/f68685a9f5f0a0b3f7ba" target="_blank">Single Example</a>
+
 ## features
 - handles data with missing and unordered dates gracefully
 - custom color scales
@@ -64,11 +69,12 @@ Take a look at the <a href="https://github.com/madams1/calendar_heatmap/wiki/Opt
 - continuous legend included
 - smart tooltips
 - layout toggle to dynamically adjust layout
-- sensible defaults
-- self-contained (no need to manually include dependencies)
 
 ## dependencies
 - D3.js
 - lodash
 - moment
 - colorbrewer
+
+## browser support
+**calendar_heatmap** is tested to work in the latest stable releases of Chrome, Firefox, and Opera
