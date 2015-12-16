@@ -173,7 +173,7 @@ calendar_heatmap.create = function(opts) {
     // only display weekdays
     if (options.weekdays_only) {
         options.data = _.filter(options.data, function(d) {
-            return d[options.date_var].isoWeekday() < 6;
+            return d.day.isoWeekday() < 6;
         });
     }
 
@@ -543,7 +543,7 @@ calendar_heatmap.create = function(opts) {
                         .attr("fill", "#eee");
 
             this_tile.tt_group.append("text")
-                .text(d[options.date_var].format("dddd MMM DD, YYYY"))
+                .text(d.day.format("dddd MMM DD, YYYY"))
                 .style("font-size", 13)
                 .attr("text-anchor", "middle")
                 .attr("x", options.tooltip_width/2)
