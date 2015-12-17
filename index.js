@@ -36,38 +36,43 @@ calendar_heatmap.create = function(opts) {
     //// options to use for calendar heatmap
 
     var options = {
+        //// initial
         data: opts.data, // required
         date_var: opts.date_var, // required
         fill_var: opts.fill_var, // required
         target: opts.target ? opts.target : "body",
+        //// data
         date_format: opts.date_format ? opts.date_format : "%Y-%m-%d",
         missing_as_zero: opts.missing_as_zero ? opts.missing_as_zero : false,
-        fill_extent: opts.fill_extent ? opts.fill_extent : null,
         sunday_start: opts.sunday_start ? opts.sunday_start : false,
         weekdays_only: opts.weekdays_only ? opts.weekdays_only : false,
-        abbr_weekdays: opts.abbr_weekdays ? opts.abbr_weekdays : false,
-        title: opts.title ? opts.title : "",
-        title_size: opts.title_size ? opts.title_size : 18,
+        numeric_format: opts.numeric_format ? opts.numeric_format : ",",
+        round: opts.round ? opts.round : 1,
+        fill_extent: opts.fill_extent ? opts.fill_extent : null,
+        //// tiles
         tile_width: opts.tile_width ? opts.tile_width : 15,
         tile_height: opts.tile_height ? opts.tile_height : 14,
         color_scheme: opts.color_scheme ? opts.color_scheme : calendar_heatmap.brewer.YlOrBr,
-        stroke_color: opts.stroke_color ? opts.stroke_color : "#fff",
-        accent_color: opts.accent_color ? opts.accent_color : "#333",
-        unselected_color: opts.unselected_color ? opts.unselected_color : "#999",
         missing_color: opts.missing_color ? opts.missing_color : "#ddd",
+        stroke_color: opts.stroke_color ? opts.stroke_color : "#fff",
+        discrete_scale: opts.discrete_scale ? opts.discrete_scale : false,
+        //// labels/legend
+        title: opts.title ? opts.title : "",
+        title_size: opts.title_size ? opts.title_size : 18,
+        unselected_color: opts.unselected_color ? opts.unselected_color : "#999",
+        abbr_weekdays: opts.abbr_weekdays ? opts.abbr_weekdays : false,
         show_tooltip: _.isUndefined(opts.show_tooltip) ? true : opts.show_legend,
-        simple_tooltip: opts.simple_tooltip ? opts.simple_tooltip : false,
         tooltip_width: opts.tooltip_width ? opts.tooltip_width : 170,
-        show_toggle: _.isUndefined(opts.show_toggle) ? true : opts.show_toggle,
+        simple_tooltip: opts.simple_tooltip ? opts.simple_tooltip : false,
         show_legend: _.isUndefined(opts.show_legend) ? true : opts.show_legend,
         legend_title: opts.legend_title ? opts.legend_title : null,
-        numeric_format: opts.numeric_format ? opts.numeric_format : ",000",
-        round: opts.round ? opts.round : 1,
-        discrete_scale: opts.discrete_scale ? opts.discrete_scale : false,
+        //// miscellaneous
+        accent_color: opts.accent_color ? opts.accent_color : "#333",
+        show_toggle: _.isUndefined(opts.show_toggle) ? true : opts.show_toggle,
         margin_top: opts.margin_top ? opts.margin_top : 50,
         margin_bottom: opts.margin_bottom ? opts.margin_bottom : 10,
         margin_left: opts.margin_left ? opts.margin_left : (opts.abbr_weekdays ? 40 : 80),
-        margin_right: opts.margin_right ? opts.margin_right : 10
+        margin_right: opts.margin_right ? opts.margin_right : 10,
     };
 
     //// handle data
@@ -253,7 +258,7 @@ calendar_heatmap.create = function(opts) {
         .attr("x", margin.left + tile_width/2)
         .attr("y", margin.top - (options.title_size - 5))
         .text(options.title)
-        .style("font-size", options.title_size)
+        .style("font-size", options.title_size + "px")
         .style("font-weight", 800)
         .attr("fill", options.accent_color);
 
@@ -270,7 +275,7 @@ calendar_heatmap.create = function(opts) {
     var y_ticks = d3.selectAll("#" + ch_id + " .y .tick")[0];
 
     d3.selectAll(y_ticks)
-        .style("font-size", 11)
+        .style("font-size", "11px")
         .attr("fill", options.accent_color);
 
     // configure month labels
@@ -292,7 +297,7 @@ calendar_heatmap.create = function(opts) {
             .attr("y", 0)
             .attr("fill", options.accent_color)
             .text(function(d) { return d.label; })
-            .attr("style", "font-size: 11")
+            .attr("style", "font-size: 11px")
             .style("opacity", 0)
             .transition()
             .delay(600)
@@ -306,7 +311,7 @@ calendar_heatmap.create = function(opts) {
 
         var layout_toggle = svg.append("g")
             .attr("transform", "translate(" + (tile_width*(wn + 0.5) + margin.left - toggle_width) + ", " + (margin.top - 32) + ")")
-            .attr("style", "font-size: 12; cursor: pointer");
+            .attr("style", "font-size: 12px; cursor: pointer");
 
         var toggle_shape = layout_toggle.append("rect")
             .attr("width", toggle_width)
@@ -567,7 +572,7 @@ calendar_heatmap.create = function(opts) {
 
                 this_tile.tt_group.append("text")
                             .text(tt_val_text)
-                            .style("font-size", 14)
+                            .style("font-size", "14px")
                             .style("font-weight", 700)
                             .attr("text-anchor", "middle")
                             .attr("x", options.tooltip_width/2)
@@ -576,7 +581,7 @@ calendar_heatmap.create = function(opts) {
 
                 this_tile.tt_group.append("text")
                     .text(d.day.format("dddd MMM DD, YYYY"))
-                    .style("font-size", 13)
+                    .style("font-size", "13px")
                     .attr("text-anchor", "middle")
                     .attr("x", options.tooltip_width/2)
                     .attr("y", tt_height/2 + 16)
@@ -591,7 +596,7 @@ calendar_heatmap.create = function(opts) {
                     .append("text")
                     .attr("text-anchor", "end")
                     .text(tt_val_text + " on " + d.day.format("ddd MMM DD, YYYY"))
-                    .style("font-size", 12);
+                    .style("font-size", "12px");
 
                 this_tile.tt_group.style("opacity", 0)
                         .transition().delay(200).duration(200)
