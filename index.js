@@ -58,7 +58,7 @@ calendar_heatmap.create = function(opts) {
         discrete_scale: opts.discrete_scale ? opts.discrete_scale : false,
         //// labels/legend
         title: opts.title ? opts.title : "",
-        title_size: opts.title_size ? opts.title_size : "18px",
+        title_size: opts.title_size ? opts.title_size : 18,
         unselected_color: opts.unselected_color ? opts.unselected_color : "#999",
         abbr_weekdays: opts.abbr_weekdays ? opts.abbr_weekdays : false,
         show_tooltip: _.isUndefined(opts.show_tooltip) ? true : opts.show_legend,
@@ -258,7 +258,7 @@ calendar_heatmap.create = function(opts) {
         .attr("x", margin.left + tile_width/2)
         .attr("y", margin.top - (options.title_size - 5))
         .text(options.title)
-        .style("font-size", options.title_size)
+        .style("font-size", options.title_size + "px")
         .style("font-weight", 800)
         .attr("fill", options.accent_color);
 
