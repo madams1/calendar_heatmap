@@ -59,10 +59,11 @@ Take a look at the <a href="https://github.com/madams1/calendar_heatmap/wiki/Opt
 ## examples
 
 - <a href="http://bl.ocks.org/madams1/f68685a9f5f0a0b3f7ba" target="_blank">Single Example</a>
+- <a href="http://bl.ocks.org/madams1/84f40b8d3148c6e67b32" target="_blank">Multiple Example</a>
 
 ## features
 - handles data with missing and unordered dates gracefully
-- custom color scales (ColorBrewer palettes included)
+- custom color schemes (ColorBrewer palettes included)
 - choose start of week to be either Monday (default) or Sunday
 - option to exclude weekends
 - option to count missing data as 0's
