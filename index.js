@@ -35,6 +35,8 @@ calendar_heatmap.create = function(opts) {
 
     //// options to use for calendar heatmap
 
+    var max_color_opt = opts.color_scheme ? +_.keys(opts.color_scheme).slice(-1)[0] : 7;
+
     var options = {
         //// initial
         data: opts.data, // required
@@ -52,7 +54,8 @@ calendar_heatmap.create = function(opts) {
         //// tiles
         tile_width: opts.tile_width ? opts.tile_width : 15,
         tile_height: opts.tile_height ? opts.tile_height : 14,
-        color_scheme: opts.color_scheme ? opts.color_scheme : calendar_heatmap.brewer.YlOrBr,
+        num_colors: opts.num_colors ? opts.num_colors : max_color_opt,
+        color_scheme: opts.color_scheme ? opts.color_scheme : calendar_heatmap.brewer.YlOrBr[this.num_colors],
         missing_color: opts.missing_color ? opts.missing_color : "#ddd",
         stroke_color: opts.stroke_color ? opts.stroke_color : "#fff",
         discrete_scale: opts.discrete_scale ? opts.discrete_scale : false,
@@ -200,12 +203,12 @@ calendar_heatmap.create = function(opts) {
         max_val = fill_extent[1];
 
     // color scheming
-    var linear_palette = options.color_scheme[5],
-        color_domain = d3.range(min_val, max_val + (max_val - min_val)/4, (max_val - min_val)/4);
+
+    var linear_palette = options.color_scheme,
+        color_domain = d3.range(min_val, max_val + (max_val - min_val)/(max_color_opt - 1), (max_val - min_val)/(max_color_opt - 1));
 
     if (options.discrete_scale) {
-        var max_color_opt = _.keys(options.color_scheme).slice(-1)[0],
-            quantize_palette = options.color_scheme[max_color_opt];
+        var quantize_palette = options.color_scheme;
         var color_scale = d3.scale.quantize()
             .domain(fill_extent)
             .range(quantize_palette);
