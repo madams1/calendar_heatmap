@@ -256,7 +256,7 @@ calendar_heatmap.create = function(opts) {
     // place title on chart
     svg.append("text")
         .attr("x", margin.left + tile_width/2)
-        .attr("y", margin.top - (options.title_size - 5))
+        .attr("y", margin.top - (+options.title_size - 5))
         .text(options.title)
         .style("font-size", options.title_size + "px")
         .style("font-weight", 800)
