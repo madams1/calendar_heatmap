@@ -412,7 +412,7 @@ calendar_heatmap.create = function(opts) {
 
     // initial layout of months
     var months_expanded = false;
-    var tiles_width = tile_width*(wn + mn + 1);
+    var tiles_width = tile_width*(wn + 1);
 
     function expandMonths() {
         tiles_width = tile_width*(wn + mn + 1);
@@ -594,7 +594,7 @@ calendar_heatmap.create = function(opts) {
                         .style("opacity", 0.9);
             } else {
                 this_tile.tt_group = svg.append("g")
-                    .attr("transform", "translate(" + (tile_width*(wn + 0.5) + margin.left) + ", " + (margin.top + tiles_height + 15) + ")")
+                    .attr("transform", "translate(" + (tiles_width + margin.left - tile_width/2) + ", " + (margin.top + tiles_height + (months_expanded ? 30 : 15)) + ")")
                     .append("text")
                     .attr("text-anchor", "end")
                     .text(tt_val_text + " on " + d.day.format("ddd MMM DD, YYYY"))
