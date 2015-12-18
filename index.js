@@ -201,8 +201,8 @@ calendar_heatmap.create = function(opts) {
         max_val = fill_extent[1];
 
     // color scheming
-    var color_opt = options.num_color ? options.num_color :
-        _.keys(options.color_scheme).slice(-1)[0];
+    var color_opt = _.isArray(options.color_scheme) ? options.color_scheme.length : (options.num_color ? options.num_color :
+        _.keys(options.color_scheme).slice(-1)[0]);
 
     var palette = _.isArray(options.color_scheme) ? options.color_scheme : options.color_scheme[color_opt],
         color_domain = d3.range(min_val, max_val + (max_val - min_val)/(color_opt - 1), (max_val - min_val)/(color_opt - 1));
