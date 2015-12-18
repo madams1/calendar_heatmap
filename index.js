@@ -56,6 +56,7 @@ calendar_heatmap.create = function(opts) {
         missing_color: opts.missing_color ? opts.missing_color : "#ddd",
         stroke_color: opts.stroke_color ? opts.stroke_color : "#fff",
         discrete_scale: opts.discrete_scale ? opts.discrete_scale : false,
+        num_colors: opts.num_colors ? opts.num_colors : null,
         //// labels/legend
         title: opts.title ? opts.title : "",
         title_size: opts.title_size ? opts.title_size : 18,
@@ -200,19 +201,20 @@ calendar_heatmap.create = function(opts) {
         max_val = fill_extent[1];
 
     // color scheming
-    var linear_palette = options.color_scheme[5],
-        color_domain = d3.range(min_val, max_val + (max_val - min_val)/4, (max_val - min_val)/4);
+    var color_opt = _.isArray(options.color_scheme) ? options.color_scheme.length : (options.num_color ? options.num_color :
+        _.keys(options.color_scheme).slice(-1)[0]);
+
+    var palette = _.isArray(options.color_scheme) ? options.color_scheme : options.color_scheme[color_opt],
+        color_domain = d3.range(min_val, max_val + (max_val - min_val)/(color_opt - 1), (max_val - min_val)/(color_opt - 1));
 
     if (options.discrete_scale) {
-        var max_color_opt = _.keys(options.color_scheme).slice(-1)[0],
-            quantize_palette = options.color_scheme[max_color_opt];
         var color_scale = d3.scale.quantize()
             .domain(fill_extent)
-            .range(quantize_palette);
+            .range(palette);
     } else {
         var color_scale = d3.scale.linear()
             .domain(color_domain)
-            .range(linear_palette);
+            .range(palette);
     }
 
     // margins and sizes
@@ -364,9 +366,9 @@ calendar_heatmap.create = function(opts) {
             .append("linearGradient")
             .attr("id", "legend_gradient");
 
-        _.forEach(linear_palette, function(c, i) {
+        _.forEach(palette, function(c, i) {
             legend.append("stop")
-                .attr("offset", i*25 + "%")
+                .attr("offset", i*(100/(color_opt - 1)) + "%")
                 .attr("stop-color", c);
         });
 
