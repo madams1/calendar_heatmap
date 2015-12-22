@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/madams1/calendar_heatmap#readme",
   "dependencies": {
-    "colorbrewer": "0.0.2",
+    "color_ramps": "^1.0.2",
     "d3": "^3.5.10",
     "lodash": "^3.10.1",
     "moment": "^2.10.6"
