@@ -10,7 +10,9 @@ Using node:
 2. `var calendar_heatmap = require(calendar_heatmap);`
 
 
-Otherwise you can just download the pre-bundled JS and include it in your HTML. `<script src="calendar_heatmap.min.js"></script>` and carry on.
+Otherwise you can just download the pre-bundled JS and include it in your HTML:
+
+`<script src="calendar_heatmap.bundle.js"></script>` and carry on.
 
 ## usage
 
