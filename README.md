@@ -36,7 +36,7 @@ Your data is expected to be an array of objects representing days and correspond
 
 _Note_: You probably want the timeframe of your data to span somewhere between a couple months and a couple years to make this type of visualization. A year's worth of data might make the most sense...
 
-For convenience, **calendar_heatmap** exposes a `brewer` object that includes <a href="http://colorbrewer2.org" target="_blank">ColorBrewer</a> color palettes.
+For convenience, **calendar_heatmap** exposes a `color_ramps` object that includes <a href="https://github.com/madams1/color_ramps" target="_blank">color_ramps</a>.
 
 Another example:
 ```javascript
@@ -46,7 +46,7 @@ d3.json("my_data.json", function(err, dat) {
         data: dat,
         date_var: "day",
         fill_var: "count",
-        color_scheme: calendar_heatmap.brewer.YlGnBu,
+        color_scheme: calendar_heatmap.color_ramps.YlGnBu,
         stroke_color: "whitesmoke",
         date_format: "%m-%d-%Y",
         missing_as_zero: true,
@@ -63,7 +63,7 @@ Take a look at the <a href="https://github.com/madams1/calendar_heatmap/wiki/Opt
 
 ## features
 - handles data with missing and unordered dates gracefully
-- custom color schemes (ColorBrewer palettes included)
+- custom color schemes (<a href="https://github.com/madams1/color_ramps" target="_blank">color_ramps</a> included)
 - choose start of week to be either Monday (default) or Sunday
 - option to exclude weekends
 - option to count missing data as 0's
@@ -75,7 +75,7 @@ Take a look at the <a href="https://github.com/madams1/calendar_heatmap/wiki/Opt
 - D3.js
 - lodash
 - moment
-- colorbrewer
+- color_ramps
 
 ## browser support
 **calendar_heatmap** is tested to work in the latest stable releases of Chrome, Firefox, and Opera

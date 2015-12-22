@@ -2,13 +2,13 @@
 var _ = require("lodash"),
     d3 = require("d3"),
     moment = require("moment"),
-    colorbrewer = require("colorbrewer");
+    color_ramps = require("color_ramps");
 
 // object to attach things to
 var calendar_heatmap = {};
 
-// expose colorbrewer scales
-calendar_heatmap.brewer = colorbrewer;
+// expose color ramps
+calendar_heatmap.color_ramps = color_ramps;
 
 calendar_heatmap.create = function(opts) {
 
@@ -52,7 +52,7 @@ calendar_heatmap.create = function(opts) {
         //// tiles
         tile_width: opts.tile_width ? opts.tile_width : 15,
         tile_height: opts.tile_height ? opts.tile_height : 14,
-        color_scheme: opts.color_scheme ? opts.color_scheme : calendar_heatmap.brewer.YlOrBr,
+        color_scheme: opts.color_scheme ? opts.color_scheme : calendar_heatmap.color_ramps.YlOrBr,
         missing_color: opts.missing_color ? opts.missing_color : "#ddd",
         stroke_color: opts.stroke_color ? opts.stroke_color : "#fff",
         discrete_scale: opts.discrete_scale ? opts.discrete_scale : false,
