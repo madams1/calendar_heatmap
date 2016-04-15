@@ -57,6 +57,7 @@ calendar_heatmap.create = function(opts) {
         stroke_color: opts.stroke_color ? opts.stroke_color : "#fff",
         discrete_scale: opts.discrete_scale ? opts.discrete_scale : false,
         num_colors: opts.num_colors ? opts.num_colors : null,
+        on_click: opts.on_click ? opts.on_click : null,
         //// labels/legend
         title: opts.title ? opts.title : "",
         title_size: opts.title_size ? opts.title_size : 18,
@@ -129,6 +130,7 @@ calendar_heatmap.create = function(opts) {
         d.dow = options.sunday_start ?
             d.day.weekday() :
             d.day.isoWeekday() - 1;
+        d.formatted_date = d.day.format("dddd MMM DD, YYYY");
 
         // at the start of every week, count a new week and new week within current month
         if (d.dow === 0) {
@@ -216,6 +218,11 @@ calendar_heatmap.create = function(opts) {
             .domain(color_domain)
             .range(palette);
     }
+
+    // add color to data
+    _.map(options.data, function(d) {
+        d.fill_color = d[options.fill_var] ? color_scale(d[options.fill_var]) : options.missing_color;
+    });
 
     // margins and sizes
     var margin = {
@@ -582,7 +589,7 @@ calendar_heatmap.create = function(opts) {
                             .attr("fill", "#eee");
 
                 this_tile.tt_group.append("text")
-                    .text(d.day.format("dddd MMM DD, YYYY"))
+                    .text(d.formatted_date)
                     .style("font-size", "13px")
                     .attr("text-anchor", "middle")
                     .attr("x", options.tooltip_width/2)
@@ -638,6 +645,11 @@ calendar_heatmap.create = function(opts) {
 
         this_tile.tt_group.remove();
     });
+
+    // click
+    if (options.on_click) {
+        tiles.on("click", options.on_click);
+    }
 
     // return tick labels to default
     tile_group.on("mouseleave", function() {

@@ -81,3 +81,6 @@ Take a look at the <a href="https://github.com/madams1/calendar_heatmap/wiki/Opt
 
 ## browser support
 **calendar_heatmap** is tested to work in the latest stable releases of Chrome, Firefox, and Opera
+
+## dev
+do `npm run bundle` to create `calendar_heatmap.bundle.js` from `index.js`
