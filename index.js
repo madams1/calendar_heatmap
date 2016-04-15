@@ -56,7 +56,6 @@ calendar_heatmap.create = function(opts) {
         missing_color: opts.missing_color ? opts.missing_color : "#ddd",
         stroke_color: opts.stroke_color ? opts.stroke_color : "#fff",
         discrete_scale: opts.discrete_scale ? opts.discrete_scale : false,
-        num_colors: opts.num_colors ? opts.num_colors : null,
         on_click: opts.on_click ? opts.on_click : null,
         //// labels/legend
         title: opts.title ? opts.title : "",
