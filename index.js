@@ -56,6 +56,7 @@ calendar_heatmap.create = function(opts) {
         missing_color: opts.missing_color ? opts.missing_color : "#ddd",
         stroke_color: opts.stroke_color ? opts.stroke_color : "#fff",
         discrete_scale: opts.discrete_scale ? opts.discrete_scale : false,
+        num_colors: opts.num_colors ? opts.num_colors : null,
         on_click: opts.on_click ? opts.on_click : null,
         //// labels/legend
         title: opts.title ? opts.title : "",
@@ -202,7 +203,7 @@ calendar_heatmap.create = function(opts) {
         max_val = fill_extent[1];
 
     // color scheming
-    var color_opt = _.isArray(options.color_scheme) ? options.color_scheme.length : (options.num_color ? options.num_color :
+    var color_opt = _.isArray(options.color_scheme) ? options.color_scheme.length : (options.num_colors ? options.num_colors :
         _.keys(options.color_scheme).slice(-1)[0]);
 
     var palette = _.isArray(options.color_scheme) ? options.color_scheme : options.color_scheme[color_opt],
