@@ -95,7 +95,7 @@ calendar_heatmap.create = function(opts) {
 
     var days_of_week = _.map(options.weekdays_only ? d3.range(5) : d3.range(7), function(d) {
         return (options.sunday_start ? moment().day(d).format(options.abbr_weekdays ? "ddd" : "dddd") :
-            moment().isoWeekday(d + 1).format(options.abbr_weekdays ? "dd" : "dddd"));
+            moment().isoWeekday(d + 1).format(options.abbr_weekdays ? "ddd" : "dddd"));
     });
 
     var first_month = day_extent[0].month(),
