@@ -94,7 +94,7 @@ calendar_heatmap.create = function(opts) {
         num_days = moment(day_extent[1]).diff(moment(day_extent[0]), "days") + 1;
 
     var days_of_week = _.map(options.weekdays_only ? d3.range(5) : d3.range(7), function(d) {
-        return (options.sunday_start ? moment().day(d).format(options.abbr_weekdays ? "dd" : "dddd") :
+        return (options.sunday_start ? moment().day(d).format(options.abbr_weekdays ? "ddd" : "dddd") :
             moment().isoWeekday(d + 1).format(options.abbr_weekdays ? "dd" : "dddd"));
     });
 
